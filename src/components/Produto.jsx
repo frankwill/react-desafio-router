@@ -24,12 +24,16 @@ const Produto = () => {
     fetchProduto(`https://ranekapi.origamid.dev/json/api/produto/${id}`)
   }, [id])
 
-  if(loading) return <p>Carregando...</p>
-  if(!produto) return null
+  if (loading) return <div className="loading"></div>
+  if (!produto) return null
   return (
-    <section className={styles.produto + ' animeLeft'}>
+    <section className={styles.produto + " animeLeft"}>
       <Head title={`Ranek | ${produto.nome}`} description={produto.descricao} />
-      {produto.fotos.map(foto => <img key={foto.src} src={foto.src} alt={foto.titulo}/>)}
+      <div>
+        {produto.fotos.map((foto) => (
+          <img key={foto.src} src={foto.src} alt={foto.titulo} />
+        ))}
+      </div>
       <div>
         <h1>{produto.nome}</h1>
         <span className={styles.preco}>R$ {produto.preco}</span>
